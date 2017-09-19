@@ -26,16 +26,14 @@ module.exports.init = function() {
   });
 
   /* serve static files */
-  app.use('/api/listings', listingsRouter);
+  app.use(express.static('client'));
 
   /* use the listings router for requests to the api */
-  app.post('/api/coordinates', getCoordinates, function(req, res) {
-    res.send(req.results);
-  });
+  app.use('/api/listings', listingsRouter);
 
   /* go to homepage for all routes not specified */ 
-  app.all('/*', function(req, res) {
-    res.sendFile(path.resolve('client/index.html'));
+  app.get('/*', function(req, res) {
+    res.sendFile('index.html', { root: "client/"});
   });
 
   return app;
