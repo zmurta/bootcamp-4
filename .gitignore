@@ -1,3 +1,2 @@
 .DS_STORE
-npm_modules
-config.js
+node_modules
